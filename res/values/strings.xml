@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, OpenGL_SandboxActivity!</string>
+    <string name="app_name">OpenGL_Sandbox</string>
+
+</resources>
