@@ -29,6 +29,14 @@ public class Mesh {
 		verticesBuffer.position(0) ;
 	}
 	
+	protected void setVertices(Float[] vertices) {	// I don't like this cast, fixme
+		float[] t = new float[vertices.length] ;
+		for (int i=0; i<vertices.length; i++) {
+			t[i] = (float)(vertices[i]) ;
+		}
+		this.setVertices(t) ;
+	}
+	
 	protected void setIndices(short[] indices) {	//Todo: I like to have a push function
 		ByteBuffer ibb = ByteBuffer.allocateDirect(indices.length * 2) ;
 		ibb.order(ByteOrder.nativeOrder()) ;
@@ -36,6 +44,14 @@ public class Mesh {
 		indicesBuffer.put(indices) ;
 		indicesBuffer.position(0) ;
 		numOfIndices = indices.length ;
+	}
+	
+	protected void setIndices(Short[] indices) {	// I don't like this cast, fixme
+		short[] t = new short[indices.length] ;
+		for (int i=0; i<indices.length; i++) {
+			t[i] = (short)(indices[i]) ;
+		}
+		this.setIndices(t) ;
 	}
 	
 	protected void setVertexNormals(float[] normals) {	//ToDo: compute normals
@@ -46,6 +62,14 @@ public class Mesh {
 		vertexNormalsBuffer.position(0) ;
 	}
 	
+	protected void setVertexNormals(Float[] normals) {	// I don't like this cast, fixme
+		float[] t = new float[normals.length] ;
+		for (int i=0; i<normals.length; i++) {
+			t[i] = (float)(normals[i]) ;
+		}
+		this.setVertexNormals(t) ;
+	}
+	
 	protected void setColor(float red, float green, float blue, float alpha) {
 		rgba[0] = red ;
 		rgba[1] = green ;
@@ -54,7 +78,7 @@ public class Mesh {
 	}
 	
 	public void draw(GL10 gl) {
-		gl.glFrontFace(GL10.GL_CW) ;
+		gl.glFrontFace(GL10.GL_CCW) ;
 		gl.glEnable(GL10.GL_CULL_FACE) ;
 		gl.glCullFace(GL10.GL_BACK) ;
 		gl.glEnableClientState(GL10.GL_VERTEX_ARRAY) ;

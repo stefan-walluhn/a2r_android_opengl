@@ -4,6 +4,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 import org.a2r.terminal21.mesh.Cube;
+import org.a2r.terminal21.mesh.SphericalHarmonic;
 
 import android.opengl.GLU;
 import android.opengl.GLSurfaceView.Renderer;
@@ -12,13 +13,15 @@ import android.opengl.GLSurfaceView.Renderer;
 public class OpenGLRenderer implements Renderer {
 	
 	private Cube cube ;
+	private SphericalHarmonic sphere ;
 	private float[] light0Position ;
 	private float[] light1Position ;
 	
 	private float angle = 0 ;
 	
 	public OpenGLRenderer() {
-		cube = new Cube(2, 2, 2) ;
+		//cube = new Cube(2, 2, 2) ;
+		sphere = new SphericalHarmonic(8, 7, 6, 5, 4, 3, 2, 20000) ;
 		light0Position = new float[]{3f, 3f, 5f, 0} ;
 		light1Position = new float[]{-3f, -3f, 5f, 0} ;
 	}
@@ -42,13 +45,13 @@ public class OpenGLRenderer implements Renderer {
 	public void onDrawFrame(GL10 gl) {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT) ;
 		gl.glLoadIdentity() ;
-		gl.glTranslatef(0, 0, -10) ;
+		gl.glTranslatef(0, 0, -12) ;
 		
 		gl.glPushMatrix() ;
-		cube.rx = angle ;
-		cube.ry = angle/10 ;
-		cube.rz = angle/5 ;
-		cube.draw(gl) ;
+		sphere.rx = angle ;
+		sphere.ry = angle/10 ;
+		sphere.rz = angle/5 ;
+		sphere.draw(gl) ;
 		gl.glPopMatrix() ;
 		
 		angle++ ;
