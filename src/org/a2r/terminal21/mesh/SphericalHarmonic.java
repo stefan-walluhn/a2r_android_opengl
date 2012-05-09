@@ -146,10 +146,6 @@ public class SphericalHarmonic extends Mesh {
 					
 				}
 			}
-
-			float ax = (float)(nx / Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2) + Math.pow(nz, 2))) ;
-			float ay = (float)(ny / Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2) + Math.pow(nz, 2))) ;
-			float az = (float)(nz / Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2) + Math.pow(nz, 2))) ;
 			
 			this.vertexNormals.add((float)(-1 * nx / Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2) + Math.pow(nz, 2)))) ;		// normalize it
 			this.vertexNormals.add((float)(-1 * ny / Math.sqrt(Math.pow(nx, 2) + Math.pow(ny, 2) + Math.pow(nz, 2)))) ;

@@ -1,5 +1,7 @@
 package org.a2r.terminal21;
 
+import java.util.Random ;
+
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
@@ -12,6 +14,8 @@ import android.opengl.GLSurfaceView.Renderer;
 // OpenGLRenderer by http://blog.jayway.com/2009/12/03/opengl-es-tutorial-for-android-part-i/
 public class OpenGLRenderer implements Renderer {
 	
+	private Random r ;
+	
 	private Cube cube ;
 	private SphericalHarmonic sphere ;
 	private float[] light0Position ;
@@ -20,8 +24,10 @@ public class OpenGLRenderer implements Renderer {
 	private float angle = 0 ;
 	
 	public OpenGLRenderer() {
+		r = new Random() ;
+		
 		//cube = new Cube(2, 2, 2) ;
-		sphere = new SphericalHarmonic(8, 7, 6, 5, 4, 3, 2, 20000) ;
+		sphere = new SphericalHarmonic(r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256), r.nextInt(256)) ;
 		light0Position = new float[]{3f, 3f, 5f, 0} ;
 		light1Position = new float[]{-3f, -3f, 5f, 0} ;
 	}
@@ -45,7 +51,7 @@ public class OpenGLRenderer implements Renderer {
 	public void onDrawFrame(GL10 gl) {
 		gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT) ;
 		gl.glLoadIdentity() ;
-		gl.glTranslatef(0, 0, -12) ;
+		gl.glTranslatef(0, 0, -10) ;
 		
 		gl.glPushMatrix() ;
 		sphere.rx = angle ;
