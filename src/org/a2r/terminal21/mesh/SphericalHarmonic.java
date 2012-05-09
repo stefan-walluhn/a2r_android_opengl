@@ -112,7 +112,7 @@ public class SphericalHarmonic extends Mesh {
 				nz = 1 ;
 				break ;
 			default:
-				surroundVertices[0] = (short)(i + 3) ;	// finding surrounding vertices, that span a face
+				surroundVertices[0] = (short)(i + 3) ;	// finding surrounding vertices, that span the faces
 				surroundVertices[1] = (short)((i + SphericalHarmonic.resolution * 3) % this.vertices.size()) ;
 				surroundVertices[2] = (short)((i + SphericalHarmonic.resolution * 3 - 3) % this.vertices.size()) ;
 				surroundVertices[3] = (short)(i - 3) ;
@@ -122,6 +122,12 @@ public class SphericalHarmonic extends Mesh {
 				if (surroundVertices[4] < 0) surroundVertices[4] += this.vertices.size() ;	// first meridian
 				if (surroundVertices[5] < 0) surroundVertices[5] += this.vertices.size() ;
 				
+        /* for future reading this code:
+         * to compute a vertex normal we have to calculate the normals of the surrounding faces and add all of them. Face normals
+         * are represented by the cross product of two edge vectors of a face. So we calculate the edge vectors of one face,
+         * calculate the cross product of both egde vectors (the nx, ny, nz blocks) and finaly add all cross products (the loop). 
+         * Because all steps are additions, we can add the x, y and z components of the final vertex normal independently.
+         */
 				for (short k = 0; k < 6; k++) {		// 6 faces per vertex
 					nx += (this.vertices.get(surroundVertices[k]+1) * this.vertices.get(surroundVertices[(k+1)%6]+2)) ;
 					nx -= (this.vertices.get(surroundVertices[k]+1) * this.vertices.get(i+2)) ;
